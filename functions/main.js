@@ -53,7 +53,7 @@ async function getFileDetails(main_link, referer) {
 
 async function get_anime(res, id, ep) {
 
-  const anime_url = `${SITEURL}/category/${id}`;
+  const anime_url = `${SITEURL}/ongoing/${id}`;
 
   const header = {
     Accept:
@@ -320,7 +320,7 @@ async function genre(res, page,genre) {
 
 
 async function movies(res, page) {
-  const search_url = `${SITEURL}/anime-movies.html?page=${page || 1}`;
+  const search_url = `${SITEURL}/bookmark.html?page=${page || 1}`;
   try{
     const anime = await Extractor(search_url)
     res.status(200).json(anime);
@@ -330,7 +330,7 @@ async function movies(res, page) {
 }
 
 async function latest_anime(res, page) {
-  const search_url = `${SITEURL}/new-season.html?page=${page || 1}`;
+  const search_url = `${SITEURL}/season.html?page=${page || 1}`;
   try{
     const anime = await Extractor(search_url)
     res.status(200).json(anime);
@@ -350,7 +350,7 @@ async function popular_anime(res, page) {
 }
 
 async function thumb(id){
- const anime_url = `${SITEURL}/category/${id}`;
+ const anime_url = `${SITEURL}/latest/${id}`;
   const header = {
     Accept:
       "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -369,7 +369,7 @@ async function thumb(id){
 
 
 async function anime_list(res,page,order){
-  const search_url = `${SITEURL}/anime-list-${order}?page=${page || 1}`;
+  const search_url = `${SITEURL}/anime-lists-${order}?page=${page || 1}`;
   const header = {
     Accept:
       "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -408,6 +408,7 @@ module.exports = {
   popular_anime,
   latest_anime,
   genre,
+  season,	
   movies,
   anime_list,
   thumb,
